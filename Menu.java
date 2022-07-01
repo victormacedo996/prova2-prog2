@@ -10,9 +10,10 @@ public class Menu {
             
             System.out.println("## Escolha uma das opções abaixo ##");
             System.out.println("Opção 1 - Cadastra aluno");
-            System.out.println("Opção 2 - Imprime alunos cadastradas");
+            System.out.println("Opção 2 - Imprime alunos cadastrados");
             System.out.println("Opção 3 - Atualiza um cadastro");
-            System.out.println("Opção 3 - Deleta um cadastro");
+            System.out.println("Opção 4 - Deleta um cadastro");
+            System.out.println("Opção 5 - Imprime registro de um aluno");
             System.out.println("Opção 0 - Sair do programa");
             System.out.println("_______________________");
             System.out.print("Digite aqui sua opção: ");
@@ -48,6 +49,10 @@ public class Menu {
                     break;
                 case 4:
                     // Deleta um cadastro
+                    System.out.println("Opção 4");
+                    break;
+                case 5:
+                    // Imprime cadastro de um aluno
                     System.out.println("Opção 4");
                     break;
             
