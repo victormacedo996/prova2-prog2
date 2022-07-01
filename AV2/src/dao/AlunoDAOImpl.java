@@ -47,7 +47,14 @@ public class AlunoDAOImpl implements AlunoDAO {
 	@Override
 	public void deletarAluno(int AlunoId) throws SQLException {
 		// TODO Auto-generated method stub
-
+		String query = "DELETE FROM alunos WHERE id = ?";
+		PreparedStatement stmt = con.prepareStatement(query);
+		
+		stmt.setInt(1, AlunoId);
+		
+		stmt.execute();
+		stmt.close();
+		con.close();
 	}
 
 }
