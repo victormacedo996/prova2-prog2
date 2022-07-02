@@ -148,4 +148,35 @@ public class AlunoDAOImpl implements AlunoDAO {
 		return lstAluno;
 	}
 
+	@Override
+	public List<Aluno> obterLstAluno() throws SQLException {
+		String query = "SELECT id, nome, cpf, data_nascimento, naturalidade, endereco FROM alunos";
+		PreparedStatement stmt = con.prepareStatement(query);
+		ResultSet rs = stmt.executeQuery();
+
+		List<Aluno> lstAluno = new ArrayList<Aluno>();
+
+		while (rs.next()) {
+			Aluno aluno = new Aluno();
+
+			aluno.setId(rs.getInt("id"));
+			aluno.setNome(rs.getString("nome"));
+			aluno.setCPF(rs.getString("cpf"));
+			Date data = rs.getDate("data_nascimento");
+			Calendar dataNascimento = new GregorianCalendar();
+			dataNascimento.setTime(data);
+			aluno.setDataNascimento(dataNascimento);
+			aluno.setNaturalidade(rs.getString("naturalidade"));
+			aluno.setEndereco(rs.getString("endereco"));
+
+			lstAluno.add(aluno);
+		}
+
+		rs.close();
+		stmt.close();
+		con.close();
+
+		return lstAluno;
+	}
+
 }
