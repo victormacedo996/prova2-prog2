@@ -35,6 +35,27 @@ public class TesteAluno {
 		if (lstAluno.size() > 0) {
 			System.out.println("Aluno atualizado com sucesso!");
 		}
+	
+		List<Aluno> lstTodosAluno = obterLstAluno();
+		if (lstTodosAluno.size() > 0) {
+			System.out.println("Listar Alunos");
+			
+			for(Aluno item : lstTodosAluno) {
+				System.out.println("ID: " + item.getId() + " NOME :" + item.getNome());
+			}
+		}
+	}
+	
+	private static List<Aluno> obterLstAluno() {
+		try {
+			AlunoDAO alunoDAO = new AlunoDAOImpl();
+
+			return alunoDAO.obterLstAluno();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 	private static List<Aluno> obterLstAluno(String nome) {
