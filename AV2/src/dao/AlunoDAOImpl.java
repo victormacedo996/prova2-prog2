@@ -21,31 +21,28 @@ public class AlunoDAOImpl implements AlunoDAO {
 		this.con = ConnectionFactory.getConnection();
 	}
 
-	@SuppressWarnings("deprecation")
 	@Override
 	public Aluno obterAluno(int IdAluno) throws SQLException {
 		// TODO Auto-generated method stub
-		String query = "SELECT id, nome, cpf, data_nascimento, naturalidade, endereco FROM alunos";
+		String query = "SELECT id, nome, cpf, data_nascimento, naturalidade, endereco FROM alunos WHERE id = ?";
 		PreparedStatement stmt = con.prepareStatement(query);
+		stmt.setString(1, String.valueOf(IdAluno));
 		ResultSet rs = stmt.executeQuery();
 
 		Aluno aluno = null;
 
 		while (rs.next()) {
-			if (rs.getInt(1) == IdAluno) {
-				aluno = new Aluno();
-				aluno.setId(rs.getInt("id"));
-				aluno.setNome(rs.getString("nome"));
-				aluno.setCPF(rs.getString("cpf"));
+			aluno = new Aluno();
+			aluno.setId(rs.getInt("id"));
+			aluno.setNome(rs.getString("nome"));
+			aluno.setCPF(rs.getString("cpf"));
 
-				Date data = rs.getDate("data_nascimento");
-				Calendar dataNascimento = new GregorianCalendar();
-				dataNascimento.setTime(data);
-				aluno.setDataNascimento(dataNascimento);
-				aluno.setNaturalidade(rs.getString("naturalidade"));
-				aluno.setEndereco(rs.getString("endereco"));
-			}
-			;
+			Date data = rs.getDate("data_nascimento");
+			Calendar dataNascimento = new GregorianCalendar();
+			dataNascimento.setTime(data);
+			aluno.setDataNascimento(dataNascimento);
+			aluno.setNaturalidade(rs.getString("naturalidade"));
+			aluno.setEndereco(rs.getString("endereco"));
 		}
 
 		rs.close();
@@ -120,7 +117,6 @@ public class AlunoDAOImpl implements AlunoDAO {
 		return result;
 	}
 
-	
 	public List<Aluno> obterLstAluno(String nome) throws SQLException {
 		String query = "SELECT id, nome, cpf, data_nascimento, naturalidade, endereco FROM alunos WHERE nome like ?";
 		PreparedStatement stmt = con.prepareStatement(query);
@@ -131,7 +127,7 @@ public class AlunoDAOImpl implements AlunoDAO {
 
 		while (rs.next()) {
 			Aluno aluno = new Aluno();
-			
+
 			aluno.setId(rs.getInt("id"));
 			aluno.setNome(rs.getString("nome"));
 			aluno.setCPF(rs.getString("cpf"));
@@ -141,7 +137,7 @@ public class AlunoDAOImpl implements AlunoDAO {
 			aluno.setDataNascimento(dataNascimento);
 			aluno.setNaturalidade(rs.getString("naturalidade"));
 			aluno.setEndereco(rs.getString("endereco"));
-			
+
 			lstAluno.add(aluno);
 		}
 
