@@ -15,4 +15,6 @@ public interface AlunoDAO {
 	boolean deletarAluno(int AlunoId) throws SQLException;
 	
 	List<Aluno> obterLstAluno(String nome) throws SQLException;
+	
+	List<Aluno> obterLstAluno() throws SQLException;
 }
