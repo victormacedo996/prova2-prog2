@@ -1,6 +1,7 @@
 package dao;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import model.Aluno;
 
@@ -12,4 +13,6 @@ public interface AlunoDAO {
 	boolean atualizarAluno(Aluno aluno) throws SQLException;
 
 	boolean deletarAluno(int AlunoId) throws SQLException;
+	
+	List<Aluno> obterLstAluno(String nome) throws SQLException;
 }
