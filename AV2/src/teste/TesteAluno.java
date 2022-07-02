@@ -41,7 +41,7 @@ public class TesteAluno {
 			System.out.println("Listar Alunos");
 			
 			for(Aluno item : lstTodosAluno) {
-				System.out.println("ID: " + item.getId() + " NOME :" + item.getNome());
+				System.out.println(item.toString());
 			}
 		}
 	}
