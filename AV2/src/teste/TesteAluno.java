@@ -2,6 +2,7 @@ package teste;
 
 import java.sql.SQLException;
 import java.util.GregorianCalendar;
+import java.util.List;
 
 import dao.AlunoDAO;
 import dao.AlunoDAOImpl;
@@ -10,31 +11,48 @@ import model.Aluno;
 public class TesteAluno {
 
 	public static void main(String[] args) {
-		if(criarAluno()) {
+		if (criarAluno()) {
 			System.out.println("Criou com sucesso!");
-		};
-		
-		if(deletarAluno()) {
+		}
+
+		if (deletarAluno()) {
 			System.out.println("Deletou com sucesso!");
-		};
-		
-		Aluno aluno = obterAluno(33);
-		if(aluno != null) {
+		}
+
+		Aluno aluno = obterAluno(40);
+		if (aluno != null) {
 			System.out.println("Aluno obtido com sucesso!");
-		};
-		
+		}
+
 		aluno.setNome("Diogo");
 		aluno.setEndereco("Rua das mariolas, esquina com requeijão");
-		
-		if(atualizarAluno(aluno)) {
+
+		if (atualizarAluno(aluno)) {
 			System.out.println("Aluno atualizado com sucesso!");
+		}
+
+		List<Aluno> lstAluno = obterLstAluno("D");
+		if (lstAluno.size() > 0) {
+			System.out.println("Aluno atualizado com sucesso!");
+		}
+	}
+
+	private static List<Aluno> obterLstAluno(String nome) {
+		try {
+			AlunoDAO alunoDAO = new AlunoDAOImpl();
+
+			return alunoDAO.obterLstAluno(nome);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
 		}
 	}
 
 	public static boolean deletarAluno() {
 		try {
 			AlunoDAO alunoDAO = new AlunoDAOImpl();
-	
+
 			return alunoDAO.deletarAluno(29);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -61,7 +79,7 @@ public class TesteAluno {
 			return false;
 		}
 	}
-	
+
 	public static Aluno obterAluno(int IdAluno) {
 		try {
 			AlunoDAO alunoDAO = new AlunoDAOImpl();
@@ -72,7 +90,7 @@ public class TesteAluno {
 			return null;
 		}
 	}
-	
+
 	public static boolean atualizarAluno(Aluno aluno) {
 		try {
 			AlunoDAO alunoDAO = new AlunoDAOImpl();
@@ -83,4 +101,5 @@ public class TesteAluno {
 			return false;
 		}
 	}
+
 }
