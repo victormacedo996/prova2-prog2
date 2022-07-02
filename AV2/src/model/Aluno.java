@@ -1,10 +1,12 @@
 package model;
 
+import java.util.Calendar;
+
 public class Aluno {
 	private int Id;
 	private String Nome;
 	private String CPF;
-	private String DataNascimento;
+	private Calendar DataNascimento;
 	private String Naturalidade;
 	private String Endereco;
 	
@@ -26,10 +28,10 @@ public class Aluno {
 	public void setCPF(String cPF) {
 		CPF = cPF;
 	}
-	public String getDataNascimento() {
+	public Calendar getDataNascimento() {
 		return DataNascimento;
 	}
-	public void setDataNascimento(String dataNascimento) {
+	public void setDataNascimento(Calendar dataNascimento) {
 		DataNascimento = dataNascimento;
 	}
 	public String getNaturalidade() {
